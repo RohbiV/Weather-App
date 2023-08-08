@@ -84,7 +84,7 @@ function saveData() {
 }
 
 function getData() {
-    if (localStorage.getItem("Place") === '') {
+    if (localStorage.getItem("Place") === null) {
         target = "Dhampur";
         fetchData();
     }
