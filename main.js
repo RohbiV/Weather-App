@@ -20,7 +20,8 @@ textArea.addEventListener("click", () => {
 });
 
 const workFunctionality = () => {
-    if(textArea.value === '') {
+    textArea.blur();
+    if (textArea.value === '') {
         alert("Enter some city to search!!");
         clearInterval(intervalID);
     }
@@ -35,7 +36,7 @@ const workFunctionality = () => {
 
 submitBtn.addEventListener("click", workFunctionality);
 textArea.addEventListener("keyup", (e) => {
-    if(e.code === 'Enter') {
+    if (e.code === 'Enter') {
         workFunctionality();
     }
 });
@@ -64,7 +65,7 @@ const fetchData = async () => {
         // console.log(error);
     }
 
-    
+
 };
 
 
@@ -83,8 +84,14 @@ function saveData() {
 }
 
 function getData() {
-    target = localStorage.getItem("Place");
-    fetchData();
+    if (localStorage.getItem("Place") === '') {
+        target = "Dhampur";
+        fetchData();
+    }
+    else {
+        target = localStorage.getItem("Place");
+        fetchData();
+    }
 }
 
 getData();
